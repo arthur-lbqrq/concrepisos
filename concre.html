@@ -1,0 +1,1729 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CONCREPISOS – Pisos & Acabamentos | Recife-PE</title>
+  <meta name="description" content="Há 12 anos referência em pisos e acabamentos no Nordeste. Obras residenciais, comerciais e industriais. Recife-PE." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   CONCREPISOS — Landing Page
+   Estética: Industrial Luxo | Preto + Âmbar #FFC300
+   ============================================================ */
+
+:root {
+  --gold:      #FFC300;
+  --gold-dim:  #CC9B00;
+  --gold-glow: rgba(255,195,0,0.18);
+  --gold-line: rgba(255,195,0,0.30);
+  --ink:       #0D0C0A;
+  --ink-soft:  #1C1A16;
+  --ink-mid:   #2E2B24;
+  --stone:     #4A4540;
+  --dust:      #8C857C;
+  --cream:     #F5F0E8;
+  --white:     #FDFCFA;
+
+  --ff-head: 'Oswald', sans-serif;
+  --ff-body: 'Sora', sans-serif;
+
+  --max: 1140px;
+  --r:   10px;
+  --gap: 28px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--ink);
+  color: var(--cream);
+  line-height: 1.65;
+  font-size: 16px;
+  overflow-x: hidden;
+}
+
+/* ── Noise grain overlay ── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: .03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ============================================================
+   UTILS
+   ============================================================ */
+.wrap {
+  width: min(100% - 48px, var(--max));
+  margin-inline: auto;
+}
+
+.eyebrow {
+  font-family: var(--ff-head);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1.5px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-family: var(--ff-head);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 1px;
+  color: var(--white);
+}
+
+.section-title span { color: var(--gold); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0;
+  transition: background .3s, box-shadow .3s;
+}
+
+header.scrolled {
+  background: rgba(13,12,10,.92);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 var(--gold-line);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 20px;
+}
+
+/* Logo */
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-wrap img {
+  height: 44px;
+  width: auto;
+  /* torna o SVG dourado via CSS filter */
+}
+
+.logo-text {
+  font-family: var(--ff-head);
+  font-weight: 700;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1;
+}
+
+.logo-text span { color: var(--gold); }
+
+/* Nav */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+nav a {
+  color: var(--dust);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+
+nav a:hover { color: var(--white); background: rgba(255,255,255,.06); }
+
+nav .nav-cta {
+  background: var(--gold);
+  color: var(--ink) !important;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+  transition: background .2s, transform .2s !important;
+}
+
+nav .nav-cta:hover {
+  background: var(--gold-dim);
+  transform: translateY(-1px);
+}
+
+.menu-btn {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--gold-line);
+  color: var(--cream);
+  font-size: 20px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 0 80px;
+}
+
+/* geometric bg pattern */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, rgba(255,195,0,.06) 0%, transparent 50%),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,195,0,.025) 60px,
+      rgba(255,195,0,.025) 61px
+    );
+}
+
+.hero-glow {
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(255,195,0,.12) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content { }
+
+.hero-eyebrow {
+  margin-bottom: 20px;
+  animation: fadeUp .6s ease both;
+}
+
+.hero-content h1 {
+  font-family: var(--ff-head);
+  font-size: clamp(52px, 7vw, 88px);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: .95;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 24px;
+  animation: fadeUp .6s .1s ease both;
+}
+
+.hero-content h1 em {
+  font-style: normal;
+  color: var(--gold);
+  display: block;
+}
+
+.hero-content p {
+  color: var(--dust);
+  font-size: 16px;
+  line-height: 1.75;
+  max-width: 460px;
+  margin-bottom: 36px;
+  animation: fadeUp .6s .2s ease both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  animation: fadeUp .6s .3s ease both;
+}
+
+.btn-primary {
+  background: var(--gold);
+  color: var(--ink);
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 15px 32px;
+  border-radius: var(--r);
+  transition: background .2s, transform .2s, box-shadow .2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  background: var(--gold-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(255,195,0,.3);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cream);
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: var(--r);
+  border: 1.5px solid rgba(255,255,255,.2);
+  transition: border-color .2s, background .2s, transform .2s;
+}
+
+.btn-outline:hover {
+  border-color: var(--gold);
+  background: var(--gold-glow);
+  transform: translateY(-2px);
+}
+
+/* Hero visual */
+.hero-visual {
+  position: relative;
+  animation: fadeUp .7s .2s ease both;
+}
+
+.hero-card {
+  background: var(--ink-soft);
+  border: 1px solid rgba(255,195,0,.2);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-card img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.85);
+}
+
+.hero-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(13,12,10,.8) 0%, transparent 50%);
+}
+
+/* Stats row inside hero card */
+.hero-stats {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border-top: 1px solid rgba(255,195,0,.2);
+}
+
+.stat {
+  padding: 16px;
+  text-align: center;
+  border-right: 1px solid rgba(255,195,0,.15);
+}
+.stat:last-child { border-right: none; }
+
+.stat-num {
+  font-family: var(--ff-head);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  display: block;
+}
+
+.stat-lbl {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dust);
+  display: block;
+  margin-top: 3px;
+}
+
+/* Badge flutuante */
+.hero-badge {
+  position: absolute;
+  top: -18px; right: -18px;
+  background: var(--gold);
+  color: var(--ink);
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 8px 28px rgba(255,195,0,.45);
+  z-index: 2;
+}
+
+.badge-num {
+  font-family: var(--ff-head);
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.badge-lbl {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  opacity: .8;
+  line-height: 1.2;
+}
+
+/* ============================================================
+   SOBRE — faixa de destaque
+   ============================================================ */
+.sobre-strip {
+  background: var(--gold);
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sobre-strip::before {
+  content: 'CONCREPISOS';
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--ff-head);
+  font-size: 120px;
+  font-weight: 700;
+  color: rgba(0,0,0,.06);
+  letter-spacing: 8px;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sobre-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.sobre-text h2 {
+  font-family: var(--ff-head);
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+  line-height: 1.05;
+  margin-bottom: 20px;
+  letter-spacing: .5px;
+}
+
+.sobre-text p {
+  color: var(--ink-mid);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.sobre-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.pillar {
+  background: rgba(0,0,0,.1);
+  border-radius: var(--r);
+  padding: 20px;
+}
+
+.pillar-icon {
+  font-size: 22px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.pillar h4 {
+  font-family: var(--ff-head);
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--ink);
+  letter-spacing: .5px;
+  margin-bottom: 4px;
+}
+
+.pillar p {
+  font-size: 13px;
+  color: rgba(0,0,0,.6);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SERVIÇOS PRINCIPAIS
+   ============================================================ */
+.section-services {
+  padding: 100px 0;
+  background: var(--ink-soft);
+  position: relative;
+}
+
+.section-services::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.section-head {
+  margin-bottom: 52px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: var(--gap);
+}
+
+.service-card {
+  background: var(--ink-mid);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  padding: 36px 28px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .25s, border-color .25s, box-shadow .25s;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease;
+}
+
+.service-card:hover { transform: translateY(-6px); border-color: var(--gold-line); box-shadow: 0 16px 40px rgba(0,0,0,.4); }
+.service-card:hover::after { transform: scaleX(1); }
+
+.service-num {
+  font-family: var(--ff-head);
+  font-size: 48px;
+  font-weight: 700;
+  color: rgba(255,195,0,.12);
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+  transition: color .25s;
+}
+
+.service-card:hover .service-num { color: rgba(255,195,0,.25); }
+
+.service-card h3 {
+  font-family: var(--ff-head);
+  font-size: 26px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+
+.service-card p {
+  color: var(--dust);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.service-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stag {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: .5px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--gold-glow);
+  color: var(--gold);
+  border: 1px solid var(--gold-line);
+}
+
+/* ============================================================
+   SERVIÇOS ESPECIALIZADOS
+   ============================================================ */
+.section-esp {
+  padding: 100px 0;
+  background: var(--ink);
+  position: relative;
+}
+
+.section-esp::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.esp-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: var(--gap);
+  margin-top: 52px;
+}
+
+.esp-card {
+  background: var(--ink-soft);
+  border: 1px solid rgba(255,255,255,.05);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+
+.esp-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,.5);
+  border-color: var(--gold-line);
+}
+
+.esp-img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.8) saturate(.9);
+  transition: filter .3s;
+}
+
+.esp-card:hover .esp-img { filter: brightness(.9) saturate(1.1); }
+
+.esp-body {
+  padding: 24px;
+}
+
+.esp-icon {
+  width: 36px; height: 36px;
+  background: var(--gold);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+
+.esp-body h3 {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.esp-body p {
+  color: var(--dust);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   GALERIA
+   ============================================================ */
+.section-gallery {
+  padding: 100px 0;
+  background: var(--ink-soft);
+  position: relative;
+}
+
+.section-gallery::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-template-rows: auto auto;
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.gallery-grid .g-item:first-child {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+.g-item {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,195,0,.1);
+  position: relative;
+  cursor: zoom-in;
+}
+
+.g-item::after {
+  content: '⤢';
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 32px; height: 32px;
+  background: rgba(0,0,0,.6);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity .2s;
+}
+
+.g-item:hover::after { opacity: 1; }
+
+.g-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease, filter .3s;
+  filter: brightness(.85) saturate(.9);
+}
+
+.gallery-grid .g-item:first-child img { height: 320px; }
+
+.g-item:hover img { transform: scale(1.04); filter: brightness(.95) saturate(1.1); }
+
+/* ============================================================
+   LOCALIZAÇÃO
+   ============================================================ */
+.section-local {
+  padding: 100px 0;
+  background: var(--ink);
+  position: relative;
+}
+
+.section-local::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.local-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+  margin-top: 52px;
+}
+
+.local-info { display: flex; flex-direction: column; gap: 24px; }
+
+.info-block {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.info-icon {
+  width: 44px; height: 44px;
+  background: var(--gold-glow);
+  border: 1px solid var(--gold-line);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.info-block h4 {
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.info-block p {
+  color: var(--cream);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.map-box {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--gold-line);
+  box-shadow: 0 0 40px rgba(0,0,0,.4);
+  height: 360px;
+}
+
+.map-box iframe {
+  width: 100%; height: 100%; border: 0;
+  filter: brightness(.9) contrast(1.05) saturate(.8);
+}
+
+/* ============================================================
+   EQUIPE
+   ============================================================ */
+.section-equipe {
+  padding: 100px 0;
+  background: var(--ink-soft);
+  position: relative;
+}
+
+.section-equipe::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.equipe-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-top: 52px;
+  align-items: center;
+}
+
+.equipe-principal {
+  max-width: 340px;
+  width: 100%;
+  background: var(--ink-mid);
+  border: 1px solid var(--gold-line);
+  border-radius: 14px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.equipe-principal img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  display: block;
+  filter: brightness(.85) grayscale(.2);
+}
+
+.equipe-principal-info {
+  padding: 22px;
+  border-top: 1px solid var(--gold-line);
+}
+
+.equipe-principal-info h3 {
+  font-family: var(--ff-head);
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.equipe-principal-info p { color: var(--dust); font-size: 14px; }
+
+.equipe-row {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: var(--gap);
+  width: 100%;
+}
+
+.equipe-membro {
+  background: var(--ink-mid);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  padding: 24px 20px;
+  text-align: center;
+  transition: transform .2s, border-color .2s;
+}
+
+.equipe-membro:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-line);
+}
+
+.membro-avatar {
+  width: 56px; height: 56px;
+  background: var(--gold-glow);
+  border: 1.5px solid var(--gold-line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin: 0 auto 14px;
+}
+
+.equipe-membro h3 {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.equipe-membro p { color: var(--dust); font-size: 13px; line-height: 1.5; }
+
+/* ============================================================
+   CONTATO
+   ============================================================ */
+.section-contato {
+  padding: 100px 0;
+  background: var(--ink);
+  position: relative;
+}
+
+.section-contato::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-line), transparent);
+}
+
+.contato-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 52px;
+}
+
+.contato-text h3 {
+  font-family: var(--ff-head);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.contato-text p {
+  color: var(--dust);
+  font-size: 15px;
+  line-height: 1.75;
+  margin-bottom: 32px;
+}
+
+.contato-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contato-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: var(--ink-soft);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 12px;
+  padding: 20px 24px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+
+.contato-card:hover {
+  border-color: var(--gold);
+  transform: translateX(4px);
+  box-shadow: -4px 0 0 var(--gold);
+}
+
+.contato-card-icon {
+  width: 48px; height: 48px;
+  border-radius: 10px;
+  background: var(--gold);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.contato-card-info strong {
+  font-family: var(--ff-head);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 2px;
+}
+
+.contato-card-info span {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--white);
+}
+
+/* CTA box */
+.cta-box {
+  background: var(--gold);
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-box::before {
+  content: '';
+  position: absolute;
+  top: -40px; right: -40px;
+  width: 160px; height: 160px;
+  background: rgba(0,0,0,.08);
+  border-radius: 50%;
+}
+
+.cta-box::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: -30px;
+  width: 200px; height: 200px;
+  background: rgba(0,0,0,.06);
+  border-radius: 50%;
+}
+
+.cta-box h3 {
+  font-family: var(--ff-head);
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 1;
+  letter-spacing: .5px;
+}
+
+.cta-box p {
+  color: rgba(0,0,0,.6);
+  font-size: 15px;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--gold);
+  font-family: var(--ff-head);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 14px 32px;
+  border-radius: 10px;
+  transition: background .2s, transform .2s;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-box a:hover { background: var(--ink-mid); transform: translateY(-2px); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer {
+  background: var(--ink);
+  border-top: 1px solid var(--gold-line);
+  padding: 36px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.footer-brand {
+  font-family: var(--ff-head);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--white);
+}
+
+.footer-brand span { color: var(--gold); }
+
+footer p { color: var(--stone); font-size: 13px; }
+
+/* ============================================================
+   MODAL
+   ============================================================ */
+.image-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  background: rgba(0,0,0,.92);
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+.image-modal.open { display: flex; }
+
+.image-modal img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 12px;
+  border: 1px solid var(--gold-line);
+  animation: zoomIn .25s ease;
+}
+
+@keyframes zoomIn {
+  from { transform: scale(.92); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(24px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+body.modal-open { overflow: hidden; position: fixed; width: 100%; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 1060px) {
+  .hero-inner      { grid-template-columns: 1fr; gap: 48px; }
+  .hero-content h1 { font-size: 64px; }
+  .sobre-inner     { grid-template-columns: 1fr; }
+  .services-grid   { grid-template-columns: 1fr 1fr; }
+  .esp-grid        { grid-template-columns: 1fr 1fr; }
+  .gallery-grid    { grid-template-columns: 1fr 1fr; }
+  .gallery-grid .g-item:first-child { grid-column: 1 / 3; }
+  .local-inner     { grid-template-columns: 1fr; }
+  .equipe-row      { grid-template-columns: repeat(2,1fr); }
+  .contato-inner   { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 720px) {
+  .wrap { width: calc(100% - 36px); }
+
+  nav { display: none; flex-direction: column; position: fixed;
+        right: 16px; top: 80px; background: var(--ink-soft);
+        padding: 12px; border-radius: 12px;
+        border: 1px solid var(--gold-line);
+        box-shadow: 0 8px 40px rgba(0,0,0,.6); gap: 4px; }
+  nav.open { display: flex; }
+  nav a { padding: 10px 16px; border-radius: 8px; }
+  .menu-btn { display: block; }
+
+  .hero-content h1 { font-size: 44px; }
+  .services-grid { grid-template-columns: 1fr; }
+  .esp-grid      { grid-template-columns: 1fr; }
+  .gallery-grid  { grid-template-columns: 1fr; }
+  .gallery-grid .g-item:first-child { grid-column: auto; }
+  .gallery-grid .g-item:first-child img { height: 220px; }
+  .equipe-row    { grid-template-columns: 1fr 1fr; }
+  .sobre-pillars { grid-template-columns: 1fr; }
+  .footer-inner  { flex-direction: column; text-align: center; }
+  .hero-badge    { top: 12px; right: 12px; width: 72px; height: 72px; }
+  .badge-num     { font-size: 24px; }
+}
+
+@media (max-width: 440px) {
+  .equipe-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ========================================================
+     HEADER
+     ======================================================== -->
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="#" class="logo-wrap">
+      <img src="assets/logo-icon.svg" alt="Ícone CONCREPISOS" />
+      <span class="logo-text"><span>CONCREPISOS</span></span>
+    </a>
+
+    <nav id="main-nav" aria-label="menu principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#especializados">Especializados</a>
+      <a href="#galeria">Galeria</a>
+      <a href="#local">Localização</a>
+      <a href="#equipe">Equipe</a>
+      <a href="#contato" class="nav-cta">Orçamento</a>
+    </nav>
+
+    <button class="menu-btn" aria-label="abrir menu" id="menu-btn">☰</button>
+  </div>
+</header>
+
+
+<!-- ========================================================
+     HERO
+     ======================================================== -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="wrap hero-inner">
+
+    <div class="hero-content">
+      <p class="eyebrow hero-eyebrow">Referência no Nordeste há 12 anos</p>
+
+      <h1>
+        Concreto que<br>
+        vira <em>obra-prima</em>
+      </h1>
+
+      <p>
+        A CONCREPISOS nasceu com o propósito de entregar muito mais do que revestimentos:
+        entregamos durabilidade, beleza e requinte para o seu empreendimento,
+        com tecnologia de ponta e equipe treinada nos mais rigorosos padrões.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn-primary" href="#servicos">Ver Serviços ↓</a>
+        <a class="btn-outline"  href="#contato">Solicitar Orçamento</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-badge">
+        <span class="badge-num">12</span>
+        <span class="badge-lbl">anos de<br>experiência</span>
+      </div>
+
+      <div class="hero-card">
+        <img src="assets/obra5.jpeg" alt="Piso de concreto polido" />
+        <div class="hero-card-overlay"></div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-num">12+</span>
+            <span class="stat-lbl">Anos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-lbl">Segmentos</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">NE</span>
+            <span class="stat-lbl">Nordeste</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ========================================================
+     SOBRE — FAIXA ÂMBAR
+     ======================================================== -->
+<div class="sobre-strip">
+  <div class="wrap sobre-inner">
+
+    <div class="sobre-text">
+      <h2>Solidez e confiança em cada metro quadrado</h2>
+      <p>
+        Há 12 anos construímos referência absoluta na arte de transformar o concreto em
+        verdadeira obra-prima por todo o Nordeste. Contamos com tecnologia de ponta e
+        equipamentos de última geração, aliados ao talento de uma equipe altamente
+        especializada.
+      </p>
+    </div>
+
+    <div class="sobre-pillars">
+      <div class="pillar">
+        <span class="pillar-icon">🏆</span>
+        <h4>Referência</h4>
+        <p>12 anos sendo a escolha de quem exige o melhor em acabamento.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">⚙️</span>
+        <h4>Tecnologia</h4>
+        <p>Equipamentos de última geração para resultados superiores.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">👷</span>
+        <h4>Equipe</h4>
+        <p>Profissionais treinados nos mais rigorosos padrões do mercado.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-icon">📍</span>
+        <h4>Nordeste</h4>
+        <p>Atendemos projetos em todo o Nordeste com agilidade e qualidade.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ========================================================
+     SERVIÇOS PRINCIPAIS
+     ======================================================== -->
+<section id="servicos" class="section-services">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">O que fazemos</p>
+      <h2 class="section-title">Nossos <span>Serviços</span></h2>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <span class="service-num">01</span>
+        <h3>Obras Residenciais</h3>
+        <p>Reformas e adequações, padronização de ambientes, acabamento completo em piso, pintura e revestimento para o seu lar.</p>
+        <div class="service-tags">
+          <span class="stag">Reformas</span>
+          <span class="stag">Acabamento</span>
+          <span class="stag">Pintura</span>
+          <span class="stag">Revestimento</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <span class="service-num">02</span>
+        <h3>Obras Industriais</h3>
+        <p>Galpões, reforma de fábrica, estruturas e manutenção industrial executados com padrão técnico de alta exigência.</p>
+        <div class="service-tags">
+          <span class="stag">Galpões</span>
+          <span class="stag">Fábricas</span>
+          <span class="stag">Estruturas</span>
+          <span class="stag">Manutenção</span>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <span class="service-num">03</span>
+        <h3>Obras Comerciais</h3>
+        <p>Lojas, pontos comerciais, reformas gerais e padronização de ambientes para destacar o seu negócio.</p>
+        <div class="service-tags">
+          <span class="stag">Lojas</span>
+          <span class="stag">Reformas</span>
+          <span class="stag">Padronização</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     SERVIÇOS ESPECIALIZADOS
+     ======================================================== -->
+<section id="especializados" class="section-esp">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Expertise técnica</p>
+      <h2 class="section-title">Serviços <span>Especializados</span></h2>
+    </div>
+
+    <div class="esp-grid">
+
+      <div class="esp-card">
+        <img src="assets/obra3.jpeg" alt="Lapidação de Piso" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">💎</div>
+          <h3>Lapidação de Piso</h3>
+          <p>Refinamento da superfície com máquinas e discos diamantados. Deixa o piso mais liso, com acabamento fosco ou brilhoso, aumentando resistência ao desgaste.</p>
+        </div>
+      </div>
+
+      <div class="esp-card">
+        <img src="assets/obra6.jpeg" alt="Pintura Epóxi" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">🔶</div>
+          <h3>Pintura Epóxi</h3>
+          <p>Resina epóxi sobre o concreto que forma camada lisa, resistente e impermeável. Alta resistência a impactos, produtos químicos e fácil limpeza. Protege contra infiltração.</p>
+        </div>
+      </div>
+
+      <div class="esp-card">
+        <img src="assets/obra12.jpeg" alt="Terraplanagem" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">🏗️</div>
+          <h3>Terraplanagem</h3>
+          <p>A base de toda grande obra. Garantimos nivelamento correto, compactação do solo e estabilidade para evitar rachaduras, infiltrações e afundamentos futuros.</p>
+        </div>
+      </div>
+
+      <div class="esp-card">
+        <img src="assets/obra1.jpeg" alt="Armação de Ferragem" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">⚙️</div>
+          <h3>Armação de Ferragem</h3>
+          <p>Posicionamento correto das barras de aço em vigas, pilares e lajes, dando ao concreto força para suportar cargas e evitar fissuras estruturais ao longo do tempo.</p>
+        </div>
+      </div>
+
+      <div class="esp-card">
+        <img src="assets/obra7.jpeg" alt="Nivelamento" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">📐</div>
+          <h3>Nivelamento</h3>
+          <p>Precisão que garante acabamento perfeito. Corrige desníveis, prepara a superfície para qualquer revestimento e evita acúmulo de água e desgaste irregular.</p>
+        </div>
+      </div>
+
+      <div class="esp-card">
+        <img src="assets/obra10.jpeg" alt="Polimento" class="esp-img" />
+        <div class="esp-body">
+          <div class="esp-icon">✨</div>
+          <h3>Polimento</h3>
+          <p>Acabamento final liso, uniforme e de excelente aspecto visual. Aumenta resistência, reduz porosidade e facilita a limpeza em qualquer tipo de ambiente.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     GALERIA
+     ======================================================== -->
+<section id="galeria" class="section-gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Portfólio</p>
+      <h2 class="section-title">Projetos <span>Realizados</span></h2>
+    </div>
+
+    <div class="gallery-grid">
+      <div class="g-item"><img src="assets/obra8.jpeg" alt="Projeto 1" /></div>
+      <div class="g-item"><img src="assets/obra11.jpeg" alt="Projeto 2" /></div>
+      <div class="g-item"><img src="assets/obra2.jpeg" alt="Projeto 3" /></div>
+      <div class="g-item"><img src="assets/obra9.jpeg" alt="Projeto 4" /></div>
+      <div class="g-item"><img src="assets/obra4.jpeg" alt="Projeto 5" /></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     LOCALIZAÇÃO
+     ======================================================== -->
+<section id="local" class="section-local">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Onde estamos</p>
+      <h2 class="section-title">Nossa <span>Localização</span></h2>
+    </div>
+
+    <div class="local-inner">
+
+      <div class="local-info">
+        <div class="info-block">
+          <div class="info-icon">📍</div>
+          <div>
+            <h4>Endereço</h4>
+            <p>Rua Alegre, 206 – Arruda <br>Recife – PE, 52120-1257</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">📱</div>
+          <div>
+            <h4>WhatsApp</h4>
+            <p>(81) 8690-8091</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">📷</div>
+          <div>
+            <h4>Instagram</h4>
+            <p>@concrepisosoficial</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">✉️</div>
+          <div>
+            <h4>E-mail</h4>
+            <p>concrepisos2023@gmail.com</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon">🗺️</div>
+          <div>
+            <h4>Área de atendimento</h4>
+            <p>Recife e toda a região metropolitana.<br>Atendemos projetos em todo o Nordeste.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-box">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.7806223523176!2d-34.89790170934007!3d-8.02154295944016!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7ab184657438b1f%3A0x2bd29009035cfb90!2sR.%20Alegre%2C%20206%20-%20%C3%81gua%20Fria%2C%20Recife%20-%20PE%2C%2052120-125!5e0!3m2!1spt-BR!2sbr!4v1779030493657!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     EQUIPE
+     ======================================================== -->
+<section id="equipe" class="section-equipe">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Quem somos</p>
+      <h2 class="section-title">Nossa <span>Equipe</span></h2>
+    </div>
+
+    <div class="equipe-layout">
+
+      <div class="equipe-principal">
+        <div class="equipe-principal-info">
+          <h3>Responsável Técnico</h3>
+          <p>Coordena todas as obras, garante o padrão de qualidade e atende cada cliente com atenção personalizada.</p>
+        </div>
+      </div>
+
+      <div class="equipe-row">
+        <div class="equipe-membro">
+          <div class="membro-avatar">👷</div>
+          <h3>Mestre de Obras</h3>
+          <p>Supervisão de equipes e controle rigoroso da execução no canteiro.</p>
+        </div>
+        <div class="equipe-membro">
+          <div class="membro-avatar">🔲</div>
+          <h3>Assentador</h3>
+          <p>Especialista em porcelanato, cerâmica e revestimentos especiais.</p>
+        </div>
+        <div class="equipe-membro">
+          <div class="membro-avatar">🏗️</div>
+          <h3>Concretista</h3>
+          <p>Execução de contrapisos, lajes e pisos industriais de concreto.</p>
+        </div>
+        <div class="equipe-membro">
+          <div class="membro-avatar">✨</div>
+          <h3>Acabador</h3>
+          <p>Polimento, epóxi e tratamentos finais para pisos de alto padrão.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     CONTATO
+     ======================================================== -->
+<section id="contato" class="section-contato">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Fale conosco</p>
+      <h2 class="section-title">Solicite um <span>Orçamento</span></h2>
+    </div>
+
+    <div class="contato-inner">
+
+      <div>
+        <div class="contato-text">
+          <h3>Visita técnica gratuita e proposta personalizada</h3>
+          <p>
+            Entre em contato agora mesmo. Nossa equipe realiza visita técnica
+            sem custo e apresenta proposta personalizada para o seu projeto,
+            seja residencial, comercial ou industrial.
+          </p>
+        </div>
+
+        <div class="contato-cards">
+          <a class="contato-card" href="https://wa.me/558186908091" target="_blank" rel="noopener">
+            <div class="contato-card-icon">💬</div>
+            <div class="contato-card-info">
+              <strong>WhatsApp</strong>
+              <span>(81) 8690-8091</span>
+            </div>
+          </a>
+
+          <a class="contato-card" href="https://www.instagram.com/concrepisosoficial/" target="_blank" rel="noopener">
+            <div class="contato-card-icon">📷</div>
+            <div class="contato-card-info">
+              <strong>Instagram</strong>
+              <span>@concrepisosoficial</span>
+            </div>
+          </a>
+
+          <a class="contato-card" href="https://mail.google.com/mail/?view=cm&fs=1&to=concrepisos2023@gmail.com"
+   target="_blank">
+            <div class="contato-card-icon">✉️</div>
+            <div class="contato-card-info">
+              <strong>E-mail</strong>
+              <span>concrepisos2023@gmail.com</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="cta-box">
+        <h3>Pronto para transformar seu espaço?</h3>
+        <p>Fale agora com a nossa equipe e receba um orçamento sem compromisso.</p>
+        <a href="https://wa.me/558186908091" target="_blank" rel="noopener">
+          Falar no WhatsApp →
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ========================================================
+     FOOTER
+     ======================================================== -->
+<footer>
+  <div class="wrap footer-inner">
+    <span class="footer-brand"><span>CONCREPISOS</span></span>
+    <p>Pisos & Acabamentos · Recife – PE · 2026</p>
+    <p>Nordeste com solidez há 12 anos</p>
+  </div>
+</footer>
+
+
+<!-- ========================================================
+     SCRIPTS
+     ======================================================== -->
+<script>
+  /* Header scroll */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive: true });
+
+  /* Menu mobile */
+  const menuBtn = document.getElementById('menu-btn');
+  const mainNav = document.getElementById('main-nav');
+  if (menuBtn && mainNav) {
+    menuBtn.addEventListener('click', () => mainNav.classList.toggle('open'));
+    mainNav.querySelectorAll('a').forEach(a =>
+      a.addEventListener('click', () => mainNav.classList.remove('open'))
+    );
+  }
+
+  /* Modal de imagem */
+  (function () {
+    const modal = document.createElement('div');
+    modal.className = 'image-modal';
+    modal.innerHTML = '<img src="" alt="Imagem ampliada">';
+    document.body.appendChild(modal);
+    const mImg = modal.querySelector('img');
+
+    function openModal(src) {
+      const y = window.scrollY || 0;
+      document.body.dataset.scrollY = String(y);
+      const sbw = window.innerWidth - document.documentElement.clientWidth;
+      if (sbw > 0) document.body.style.paddingRight = sbw + 'px';
+      document.body.style.top = `-${y}px`;
+      document.body.classList.add('modal-open');
+      mImg.src = src;
+      modal.classList.add('open');
+    }
+
+    function closeModal() {
+      modal.classList.remove('open');
+      const y = parseInt(document.body.dataset.scrollY || '0', 10);
+      document.body.classList.remove('modal-open');
+      document.body.style.top = '';
+      document.body.style.paddingRight = '';
+      window.scrollTo(0, y);
+    }
+
+    document.querySelectorAll('.g-item img, .esp-img').forEach(img => {
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', () => openModal(img.src), { passive: true });
+    });
+
+    modal.addEventListener('click', closeModal);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+  })();
+</script>
+
+</body>
+</html>
